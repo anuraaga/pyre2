@@ -48,14 +48,15 @@ _re2_prefixes = [
     '/usr',
     '/usr/local',
     '/opt/',
-    '/opt/local',
     ]
 
 for re2_prefix in _re2_prefixes:
     if os.path.exists(os.path.join(re2_prefix, "include", "re2")):
         break
 else:
-    raise OSError("Cannot find RE2 library. Please install it from http://code.google.com/p/re2/wiki/Install")
+    # Hopefully the build environment is setup to include the re2 library
+    # default, so try with an empty prefix.
+    re2_prefix = ''
 
 BASE_DIR = os.path.dirname(__file__)
 
